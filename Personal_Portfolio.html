@@ -1,0 +1,162 @@
+/* Personal Portfolio */
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aarav Dhamija</title>
+    <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        *, *::before, *::after{ box-sizing: border-box; margin: 0; padding: 0; }
+
+        /* Colour palette of high-contrast colours */
+
+        :root{ 
+            --cream: #FAFAF7;
+            --navy: #1C2237;
+            --orange: #E8441A;
+            --yellow: #f5be1e;
+            --light_gray: #EBEBEB;
+            --dark_gray: #6b7280;
+            --white: #FFFFFF;
+        }
+
+        html { scroll-behavior: smooth; } /* Smooth scrolling */
+
+        /* Background and Global Styles */
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--cream);
+            color: var(--navy);
+            line-height: 1.6;
+        }
+
+        /* Navigation */
+
+        nav{
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 100;
+            background-color: var(--cream);
+            border-bottom: 2px solid var(--navy);
+            padding: 0 48px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 60px;
+        }
+
+        .nav-logo {
+            font-family: 'Barlow Condensed', sans-serif;
+            font-weight: 800;
+            font-size: 24px;
+            letter-spacing: 0.08em;
+            color: var(--navy);
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 32px;
+            list-style: none;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom:0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--yellow);
+            transition: width 0.2s ease;
+        }
+
+        .nav-links a:hover::after {width: 100%;}
+
+        /* Hero Section */
+
+        #hero {
+            min-height: 100vh;
+            padding: 120px 48px 80px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            border-bottom: 2px solid var(--navy);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-tag {
+            display: inline-block;
+            background-color: var(--orange);
+            color: var(--white);
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+            padding: 6px 14px;
+            margin-bottom: 24px;
+            width: fit-content;
+        }
+
+        .hero-name {
+            font-family: 'Barlow Condensed', sans-serif;
+            font-weight: 800;
+            font-size: clamp(70px, 10vw, 140px);
+            line-height: 0.92;
+            letter-spacing: 0.02em;
+            color: var(--navy);
+            margin-bottom: 32px;
+        }
+
+        .hero-name .highlight {
+            color: var(--orange);
+        }
+
+        .hero-description {
+            font-size: 17px;
+            max-width: 560px;
+            color: var(--dark_gray);
+            line-height: 1.75;
+            margin-bottom: 40px;
+        }
+
+        .hero-actions {
+            display: flex;
+            gap: 16px;
+            flex-wrap: wrap;
+        }
+
+        .btn-primary {
+            background-color: var(--navy);
+            color: var(--white);
+            padding: 14px 28px;
+            font-size: 13px;
+            font-weight: 700;
+            text-decoration: none;
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+            text-decoration: none;
+            border-radius: 2px solid var(--navy);
+            transition: background-color 0.2s, color 0.2s;
+        }
+
+        .btn-primary:hover {
+            background: var(--orange);
+            border-color: var(--orange);
+        }
+
+        .btn-outline {
+            background: transparent;
+            color: var(--orange)
+            padding: 14px 28px;
+            font-size: 13px;
+        }
+
+    </style>
+</html>
