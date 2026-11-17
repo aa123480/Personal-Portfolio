@@ -1,18 +1,17 @@
-/* Personal Portfolio */
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Aarav Dhamija: student, builder and organizer from Oakville, Ontario. AI tools, games, and the Wayfound campus map.">
     <title>Aarav Dhamija</title>
     <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
     <style>
-        *, *::before, *::after{ box-sizing: border-box; margin: 0; padding: 0; }
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
         /* Colour palette */
 
-        :root{ 
+        :root {
             --cream: #FAFAF7;
             --navy: #1C2237;
             --orange: #E8441A;
@@ -24,6 +23,11 @@
 
         html { scroll-behavior: smooth; } /* Smooth scrolling */
 
+        @media (prefers-reduced-motion: reduce) {
+            html { scroll-behavior: auto; }
+            * { transition: none !important; }
+        }
+
         /* Background and Global Styles */
 
         body {
@@ -33,9 +37,14 @@
             line-height: 1.6;
         }
 
+        a:focus-visible {
+            outline: 3px solid var(--orange);
+            outline-offset: 3px;
+        }
+
         /* Navigation */
 
-        nav{
+        nav {
             position: fixed;
             top: 0;
             left: 0;
@@ -59,16 +68,28 @@
             text-decoration: none;
         }
 
+        .nav-logo span { color: var(--orange); }
+
         .nav-links {
             display: flex;
             gap: 32px;
             list-style: none;
         }
 
+        .nav-links a {
+            position: relative;
+            display: inline-block;
+            padding: 4px 0;
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--navy);
+            text-decoration: none;
+        }
+
         .nav-links a::after {
             content: '';
             position: absolute;
-            bottom:0;
+            bottom: 0;
             left: 0;
             width: 0;
             height: 2px;
@@ -76,7 +97,7 @@
             transition: width 0.2s ease;
         }
 
-        .nav-links a:hover::after {width: 100%;}
+        .nav-links a:hover::after { width: 100%; }
 
         /* Hero Section */
 
@@ -112,11 +133,11 @@
             letter-spacing: 0.02em;
             color: var(--navy);
             margin-bottom: 32px;
+            position: relative;
+            z-index: 1;
         }
 
-        .hero-name .highlight {
-            color: var(--orange);
-        }
+        .hero-name .highlight { color: var(--orange); }
 
         .hero-description {
             font-size: 17px;
@@ -124,26 +145,30 @@
             color: var(--dark_gray);
             line-height: 1.75;
             margin-bottom: 40px;
+            position: relative;
+            z-index: 1;
         }
 
         .hero-actions {
             display: flex;
             gap: 16px;
             flex-wrap: wrap;
+            position: relative;
+            z-index: 1;
         }
 
         .btn-primary {
+            display: inline-block;
             background-color: var(--navy);
             color: var(--white);
             padding: 14px 28px;
             font-size: 13px;
             font-weight: 700;
-            text-decoration: none;
             letter-spacing: 0.06em;
             text-transform: uppercase;
             text-decoration: none;
-            border-radius: 2px solid var(--navy);
-            transition: background-color 0.2s, color 0.2s;
+            border: 2px solid var(--navy);
+            transition: background-color 0.2s, border-color 0.2s;
         }
 
         .btn-primary:hover {
@@ -152,6 +177,7 @@
         }
 
         .btn-outline {
+            display: inline-block;
             background: transparent;
             color: var(--navy);
             padding: 14px 28px;
@@ -164,12 +190,17 @@
             transition: background 0.2s, color 0.2s;
         }
 
+        .btn-outline:hover {
+            background: var(--navy);
+            color: var(--white);
+        }
+
         .hero-decoration {
             position: absolute;
             right: 48px;
             top: 50%;
             transform: translateY(-50%);
-            font-family: 'Barlow Condensed', 'sans-serif';
+            font-family: 'Barlow Condensed', sans-serif;
             font-weight: 800;
             font-size: 240px;
             color: var(--light_gray);
@@ -184,6 +215,7 @@
         section {
             padding: 80px 48px;
             border-bottom: 2px solid var(--navy);
+            scroll-margin-top: 60px;
         }
 
         .section-label {
@@ -200,7 +232,7 @@
             flex-shrink: 0;
         }
 
-        section-title {
+        .section-title {
             font-family: 'Barlow Condensed', sans-serif;
             font-weight: 800;
             font-size: clamp(36px, 5vw, 56px);
@@ -211,7 +243,7 @@
 
         .section-num {
             font-size: 12px;
-            font-weight: 700px;
+            font-weight: 700;
             color: var(--orange);
             letter-spacing: 0.14em;
             text-transform: uppercase;
@@ -219,348 +251,378 @@
         }
 
         /* About */
+
         .about-grid {
-        display: grid;
-        grid-template-columns: 1.2fr 0.8fr;
-        gap: 64px;
-        align-items: start;
+            display: grid;
+            grid-template-columns: 1.2fr 0.8fr;
+            gap: 64px;
+            align-items: start;
         }
 
         .about-text {
-        font-size: 16px;
-        color: var(--dark_gray);
-        line-height:1.85;
+            font-size: 16px;
+            color: var(--dark_gray);
+            line-height: 1.85;
+            max-width: 62ch;
         }
 
-        about-text p + p { margin-top: 20px;}
-        .about-stats {
-        display: grid;
-        gap: 0;
-        }
+        .about-text p + p { margin-top: 20px; }
 
-        .stat-item {
-        padding: 20px 0;
-        border-bottom: 1px solid var(--light_gray)
-        }
+        .about-stats { display: grid; gap: 0; }
 
         .stat-item {
-        padding: 20px 0;
-        border-bottom: 1px solid var(--light_gray)
+            padding: 20px 0;
+            border-bottom: 1px solid var(--light_gray);
         }
 
-        .stat-item:first-child { border-top: 1px solid var (--light_gray)}
+        .stat-item:first-child { border-top: 1px solid var(--light_gray); }
 
         .stat-num {
-        font-family: 'Barlow Condensed', sans-serif;
-        font-weight: 800;
-        font-size: 48px;
-        color: var(--navy);
-        margin-top: 4px;
+            font-family: 'Barlow Condensed', sans-serif;
+            font-weight: 800;
+            font-size: 48px;
+            color: var(--navy);
+            line-height: 1;
+            margin-top: 4px;
         }
 
         .stat-label {
-        font-size: 12px;
-        font-weight: 600;
-        letter-spacing: 0.08em;
-        text-transform: uppercase;
-        color: var(--dark_gray);
-        margin-top: 4px;
+            font-size: 12px;
+            font-weight: 600;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            color: var(--dark_gray);
+            margin-top: 4px;
         }
 
-    /* Project */
-    .project-grid {
-        display: grid;
-        grid-template-columns: (3, 1fr);
-        gap: 2px;
-        border: 2px solid var(--navy);
+        /* Projects */
+
+        .project-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2px;
+            background: var(--navy);
+            border: 2px solid var(--navy);
         }
-    
-    .project-card {
-    background: var(--white);
-    padding: 32px;
-    border-right: 2px solid var(--navy);
-    position: relative;
-    overflow: hidden;
-    transition: background 0.2s;
-    }
 
-    .project-card:last-child { border-right:none}
+        .project-card {
+            background: var(--white);
+            padding: 32px;
+            position: relative;
+            overflow: hidden;
+            transition: background 0.2s;
+        }
 
-    .project-card:hover {background: var(--navy);}
-    .project-card:hover .project-name,
-    .project-card:hover .project-description,
-    .project-card:hover .project-tag { color: white;}
-    .project-card:hover .project-tag { background: var(--orange);}
-    .project-card:hover .project link { color: var(--yellow);}
+        .project-card.featured { grid-column: span 2; }
 
-    .project-num {
-    font-family: 'Barlow Condensed'sans-serif;
-    font-weight: 800;
-    font-size: 64px;
-    color: var(--light_gray);
-    line-height:1;
-    margin-bottom: 16px;
-    transform: color 0.2s;
-    }
+        .project-card:hover { background: var(--navy); }
 
-    .project-card:hover .project-num {color:rgba(255,255,255,0.1)}
+        .project-card:hover .project-name,
+        .project-card:hover .project-desc { color: var(--white); }
 
-    .project-tag { 
-        display: inline-block;
-        background: var(--yellow);
-        color: var(--navy);
-        font-size: 10px;
-        font-weight:700;
-        letter-spacing: 0.12em;
-        text-transform: uppercase;
-        padding: 4px 10px;
-        margin-bottom: 14px;
-        transition: background 0.2s, color 0.2s;
-    }
+        .project-card:hover .project-tag { background: var(--orange); color: var(--white); }
+        .project-card:hover .project-link { color: var(--yellow); }
+        .project-card:hover .project-num { color: rgba(255,255,255,0.1); }
 
-    .project-desc {
-        font-size: 14px;
-        color: var(--dark_gray);
-        line-height: 1.7;
-        margin-bottom: 20px;
-        transition: color 0.2s;
-    }
+        .project-card:hover .stack-pill {
+            border-color: rgba(255,255,255,0.2);
+            color: rgba(255,255,255,0.6);
+        }
 
-    .project-stack {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 6px;
-        margin-bottom: 20px;
-    }
+        .project-num {
+            font-family: 'Barlow Condensed', sans-serif;
+            font-weight: 800;
+            font-size: 64px;
+            color: var(--light_gray);
+            line-height: 1;
+            margin-bottom: 16px;
+            transition: color 0.2s;
+        }
 
-    .stack-pill {
-        font-size: 11px;
-        font-weight: 600;
-        padding: 3px 8px;
-        border: 1px solid var(--light_gray);
-        color: var(--dark_gray);
-        letter-spacing: 0.04em;
-    }
+        .project-tag {
+            display: inline-block;
+            background: var(--yellow);
+            color: var(--navy);
+            font-size: 10px;
+            font-weight: 700;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            padding: 4px 10px;
+            margin-bottom: 14px;
+            transition: background 0.2s, color 0.2s;
+        }
 
-    .project-card:hover .stac-pill {
-        border-color: rgba(255,255,255,0.2);
-        color: rgba(255,255,255,0.6);
-    }
+        .project-name {
+            font-family: 'Barlow Condensed', sans-serif;
+            font-weight: 800;
+            font-size: 30px;
+            letter-spacing: 0.02em;
+            line-height: 1.1;
+            margin-bottom: 12px;
+            transition: color 0.2s;
+        }
 
-    .project-link {
-        font-size: 12px;
-        font-weight: 700px;
-        letter-spacing: 0.08em;
-        text-transform: uppercase;
-        color: var(--orange);
-        text-decoration: none;
-        transition: color 0.2s;
-    }
+        .project-desc {
+            font-size: 14px;
+            color: var(--dark_gray);
+            line-height: 1.7;
+            margin-bottom: 20px;
+            transition: color 0.2s;
+        }
 
-    /* Skills */    
+        .project-stack {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+            margin-bottom: 20px;
+        }
 
-    .skills.grid{
-        display: grid;
-        grid-template-columns: repeat(4, 1fr);
-        gap: 2px;
-        border: 2px solid var(--navy)
-    }
+        .stack-pill {
+            font-size: 11px;
+            font-weight: 600;
+            padding: 3px 8px;
+            border: 1px solid var(--light_gray);
+            color: var(--dark_gray);
+            letter-spacing: 0.04em;
+            transition: border-color 0.2s, color 0.2s;
+        }
 
-    .skills-group {
-        padding: 28px;
-        border-right: 2px solid var(--navy);
-        background: white;
-    }
+        .project-links { display: flex; flex-wrap: wrap; gap: 20px; }
 
-    .skills-group:last-child {border-right: none}
+        .project-link {
+            font-size: 12px;
+            font-weight: 700;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            color: var(--orange);
+            text-decoration: none;
+            transition: color 0.2s;
+        }
 
-    .skills-group-title {
-        font-family: 'Barlow Condensed', sans-serif;
-        font-weight: 700;
-        font-size: 18px;
-        text-transform: uppercase;
-        letter-spacing: 0.06em;
-        color: var(--orange);
-        margin-bottom: 16px;
-        padding-bottom: 10px;
-        border-bottom: 2px solid var(--dark_gray);
-    }
-    
-    .skill-list li {
-        font-size: 14px;
-        font-weight: 500;
-        color: var(--navy);
-        display: flex;
-        align-items: center;
-        gap: 8px;
-    }
+        .project-link:hover { text-decoration: underline; }
 
-    .skill-list li::before {
-        content: '';
-        width: 6px;
-        height: 6px;
-        background: var(--yellow);
-        flex-shrink: 0;
-    }
+        /* Skills */
 
-    /* Experience */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 2px;
+            background: var(--navy);
+            border: 2px solid var(--navy);
+        }
 
-    .experience-list {
-        display: grid;
-        grid-template-columns: 200px 1fr;
-        gap: 48px;
-        padding: 36px 0;
-        border-bottom: 1px solid var(--navy);
-        align-items: start;
-    }
+        .skills-group {
+            padding: 28px;
+            background: var(--white);
+        }
 
-    .exp-item { 
-        display: grid;
-        grid-template-columns: 200px 1fr;
-        gap: 48px;
-        padding: 36px 0;
-        border-bottom: 1px solid var(--light_gray);
-        align-items: start;
-    }
+        .skills-group-title {
+            font-family: 'Barlow Condensed', sans-serif;
+            font-weight: 700;
+            font-size: 18px;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            color: var(--orange);
+            margin-bottom: 16px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--dark_gray);
+        }
 
-    .exp-item:first-child {border-top: 1px solid var(--light_gray); }
+        .skill-list {
+            list-style: none;
+            display: grid;
+            gap: 10px;
+        }
 
-    .exp-date {
-        font-size: 12px;
-        font-weight: 700;
-        letter-spacing: 0.08em;
-        text-transform: uppercase;
-        color: var(--dark_gray);
-        padding-bottom: 4px;
-    }
+        .skill-list li {
+            font-size: 14px;
+            font-weight: 500;
+            color: var(--navy);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
 
-    .exp-category {
-        display: inline-block;
-        background-color: var(--yellow);
-        color: var(--navy);
-        font-size: 10px;
-        font-weight: 700;
-        letter-spacing: 0.1em;
-        text-transform: uppercase;
-        padding: 3px 8px;
-        margin-bottom: 8px;
-    }
+        .skill-list li::before {
+            content: '';
+            width: 6px;
+            height: 6px;
+            background: var(--yellow);
+            flex-shrink: 0;
+        }
 
-    .exp-title {
-        font-family: 'Barlow Condensed', sans-serif;
-        font-weight: 700;
-        font-size: 24px;
-        letter-spacing: 0.02em;
-        margin-bottom: 10px;
-    }
+        /* Experience */
 
-    .exp-org {
-        font-size: 13px;
-        font-weight: 600;
-        color: var(--orange);
-        margin-bottom: 4px;
-    }
-        
-    .exp-desc {
-        font-size: 13px;
-        color: var(--dark_gray);
-        line-height: 17;
-    }
+        .exp-item {
+            display: grid;
+            grid-template-columns: 200px 1fr;
+            gap: 48px;
+            padding: 36px 0;
+            border-bottom: 1px solid var(--light_gray);
+            align-items: start;
+        }
 
-    /* Contact */
+        .exp-item:first-child { border-top: 1px solid var(--light_gray); }
 
-    #contact {
-        background: var(--navy);
-        border-bottom: none;
-    }
+        .exp-date {
+            font-size: 12px;
+            font-weight: 700;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            color: var(--dark_gray);
+            padding-bottom: 4px;
+        }
 
-    #contact .section-title {color: white;}
-    #contact .section-num {color: var(--orange)}
+        .exp-category {
+            display: inline-block;
+            background-color: var(--yellow);
+            color: var(--navy);
+            font-size: 10px;
+            font-weight: 700;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            padding: 3px 8px;
+            margin-bottom: 8px;
+        }
 
-    .contact-grid {
-        display:grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 64px;
-        align-items: start;
-    }
+        .exp-title {
+            font-family: 'Barlow Condensed', sans-serif;
+            font-weight: 700;
+            font-size: 24px;
+            letter-spacing: 0.02em;
+            margin-bottom: 10px;
+        }
 
-    .contact-link {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        padding: 20px 0;
-        border-bottom: 1px solid rgba (255, 255, 255, 0.12);
-        text-decoration: none;
-        color: white;
-        font-size: 15px;
-        font-weight: 600;
-        transition: color 0.2s;
-    }
+        .exp-org {
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--orange);
+            margin-bottom: 4px;
+        }
 
-    .contact-link:first-child {border-top: 1px solid rgba(255,255,255,0.12);}
-    .contact-link:hover .contact-arrow {transform: translateX(4px);}
+        .exp-desc {
+            font-size: 14px;
+            color: var(--dark_gray);
+            line-height: 1.7;
+            max-width: 68ch;
+        }
 
-    .contact-email {
-        font-family: 'Barlow Condensed', sans-serif;
-        font-weight: 800;
-        font-size: clamp(32px, 4vw, 56px);
-        color: white;
-        text-decoration: none;
-        display: block;
-        margin-top: 32px;
-        transition: color 0.2s;
-        line-height: 1.1;
-    }
+        /* Contact */
 
+        #contact {
+            background: var(--navy);
+            border-bottom: none;
+        }
 
-    .contact-email:hover {color: var(--orange)}
+        #contact .section-title { color: var(--white); }
+        #contact .section-num { color: var(--orange); }
 
-    /* Footer */
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 64px;
+            align-items: start;
+        }
 
-    footer {
-        background: var(--navy);
-        padding: 24px 48px;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        border-top: 1px solid rgba(255,255,255,0.1);
-    }
+        .contact-intro {
+            font-size: 16px;
+            color: rgba(255,255,255,0.7);
+            line-height: 1.8;
+            max-width: 46ch;
+        }
 
-    .footer-text{
-        font-size: 12px;
-        color: rgba(255,255,255,0.4);
-        letter-spacing: 0.06em;
-    }
+        .contact-link {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+            border-bottom: 1px solid rgba(255,255,255,0.12);
+            text-decoration: none;
+            color: var(--white);
+            font-size: 15px;
+            font-weight: 600;
+            transition: color 0.2s;
+        }
 
-    .footer-name {
-        font-family: 'Barlow Condensed', sans-serif;
-        font-weight: 800;
-        font-size: 18px;
-        color: whte;
-        letter-spacing: 0.08em;
-    }
+        .contact-link:first-child { border-top: 1px solid rgba(255,255,255,0.12); }
+        .contact-link:hover { color: var(--yellow); }
+        .contact-link:hover .contact-arrow { transform: translateX(4px); }
 
-    @media (max-width: 900px) {
-        nav { padding: 0 24px; }
-        .nav-links {gap: 20px;}
-        #hero, section {padding-left: 24px; padding-right: 24px;}
-        .hero-decoration {display:none;}
-        .about-grid{grid-template-columns: 1fr; gap: 40px}
-        .projects-grid {grid-template-columns: 1fr;}
-        .project-card {border-right: none; border-bottom: 2px solid var(--navy);}
-        .project-card:last-child {border-bottom: none;}
-        .skills-grid { grid-template-columns: 1fr 1fr;}
-        .skill-group {border-right: none; border-bottom: 2px solid var(--navy)}
-        .exp-item{ grid-template-columns: 1fr; gap: 12px;}
-        .contact-grid {grid-template-columns: 1fr; gap: 40px;}
-        footer { flex-direction: column;gap: 8px; text-align: center;}
-    }
-   </style/>
+        .contact-arrow {
+            color: var(--orange);
+            transition: transform 0.2s;
+        }
+
+        .contact-email {
+            font-family: 'Barlow Condensed', sans-serif;
+            font-weight: 800;
+            font-size: clamp(28px, 4vw, 48px);
+            color: var(--white);
+            text-decoration: none;
+            display: block;
+            margin-top: 32px;
+            transition: color 0.2s;
+            line-height: 1.1;
+            overflow-wrap: anywhere;
+        }
+
+        .contact-email:hover { color: var(--orange); }
+
+        #contact a:focus-visible { outline-color: var(--yellow); }
+
+        /* Footer */
+
+        footer {
+            background: var(--navy);
+            padding: 24px 48px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-top: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .footer-text {
+            font-size: 12px;
+            color: rgba(255,255,255,0.6);
+            letter-spacing: 0.06em;
+        }
+
+        .footer-name {
+            font-family: 'Barlow Condensed', sans-serif;
+            font-weight: 800;
+            font-size: 18px;
+            color: var(--white);
+            letter-spacing: 0.08em;
+        }
+
+        @media (max-width: 900px) {
+            nav { padding: 0 24px; }
+            .nav-links { gap: 20px; }
+            #hero, section { padding-left: 24px; padding-right: 24px; }
+            .hero-decoration { display: none; }
+            .about-grid { grid-template-columns: 1fr; gap: 40px; }
+            .project-grid { grid-template-columns: 1fr; }
+            .project-card.featured { grid-column: span 1; }
+            .skills-grid { grid-template-columns: 1fr 1fr; }
+            .exp-item { grid-template-columns: 1fr; gap: 12px; }
+            .contact-grid { grid-template-columns: 1fr; gap: 40px; }
+            footer { flex-direction: column; gap: 8px; text-align: center; }
+        }
+
+        @media (max-width: 640px) {
+            nav { padding: 0 16px; }
+            .nav-logo { display: none; }
+            .nav-links { gap: 14px; width: 100%; justify-content: space-between; }
+            .nav-links a { font-size: 12px; }
+            .skills-grid { grid-template-columns: 1fr; }
+            .project-card { padding: 24px; }
+        }
+    </style>
 </head>
 <body>
 
     <nav>
-        <a href="#hero" class=""navlogo">AD<span>.</span></a>
+        <a href="#hero" class="nav-logo">AD<span>.</span></a>
         <ul class="nav-links">
             <li><a href="#about">About</a></li>
             <li><a href="#projects">Projects</a></li>
@@ -570,28 +632,305 @@
         </ul>
     </nav>
 
+    <main>
+
     <!-- Hero -->
     <section id="hero">
-        <div class ="hero-tag">Grade 10 · Oakville, Ontario</div>
+        <div class="hero-tag">Oakville, Ontario · Class of 2028</div>
         <h1 class="hero-name">
-            Arav<br>
+            Aarav<br>
             <span class="highlight">Dhamija</span>
         </h1>
-yher the thet eh te tqew12312313# 1231231234244124433413123213123       
-        
-        
-        
-        
-        
-        
-        
-        
+        <p class="hero-description">
+            Student, builder and organizer. I make AI tools, games and maps, and I’m the Senior Vice President of the Engineering Club at White Oaks Secondary School.
+        </p>
+        <div class="hero-actions">
+            <a href="#projects" class="btn-primary">View projects</a>
+            <a href="#contact" class="btn-outline">Get in touch</a>
+        </div>
+        <div class="hero-decoration" aria-hidden="true">AD</div>
     </section>
 
+    <!-- About -->
+    <section id="about">
+        <div class="section-label">
+            <div class="section-stripe"></div>
+            <div>
+                <div class="section-num">01</div>
+                <h2 class="section-title">About</h2>
+            </div>
+        </div>
+        <div class="about-grid">
+            <div class="about-text">
+                <p>I’m a high school student in Oakville, Ontario, graduating in 2028. I’m into coding, building PCs, and learning about artificial intelligence and business.</p>
+                <p>At White Oaks Secondary School I’m the Senior Vice President of the Engineering Club, a member of the Robotics Business Team, and a DECA competitor in finance and marketing. In 2026 I took part in ONHacks and built Wayfound, an interactive map of the University of Toronto for new students and visitors.</p>
+                <p>Outside of school I’ve volunteered over 110 hours at community events, packing food for families in need, and tutoring beginners in Python.</p>
+            </div>
+            <div class="about-stats">
+                <div class="stat-item">
+                    <div class="stat-num">110+</div>
+                    <div class="stat-label">Volunteer hours</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-num">5</div>
+                    <div class="stat-label">Projects built</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-num">3</div>
+                    <div class="stat-label">Certifications</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-num">2</div>
+                    <div class="stat-label">Languages: English and Hindi</div>
+                </div>
+            </div>
+        </div>
+    </section>
 
+    <!-- Projects -->
+    <section id="projects">
+        <div class="section-label">
+            <div class="section-stripe"></div>
+            <div>
+                <div class="section-num">02</div>
+                <h2 class="section-title">Projects</h2>
+            </div>
+        </div>
+        <div class="project-grid">
 
+            <article class="project-card featured">
+                <div class="project-num">01</div>
+                <div class="project-tag">ONHacks 2026</div>
+                <h3 class="project-name">Wayfound</h3>
+                <p class="project-desc">An interactive 3D map of the University of Toronto’s St. George campus, built at ONHacks 2026 to help new students and visitors find their way. It plans step-free, door-to-door routes from open data.</p>
+                <div class="project-stack">
+                    <span class="stack-pill">3D map</span>
+                    <span class="stack-pill">Open data</span>
+                    <span class="stack-pill">GitHub Pages</span>
+                </div>
+                <div class="project-links">
+                    <a class="project-link" href="https://aaru1801.github.io/wayfound" target="_blank" rel="noopener">Live demo</a>
+                    <a class="project-link" href="https://github.com/Aaru1801/wayfound" target="_blank" rel="noopener">Source code</a>
+                </div>
+            </article>
 
+            <article class="project-card">
+                <div class="project-num">02</div>
+                <div class="project-tag">AI</div>
+                <h3 class="project-name">ATLAS</h3>
+                <p class="project-desc">A local AI assistant that runs entirely offline on custom hardware. I tested local models from 30B down to 9B parameters to balance answer quality against what my PC could run.</p>
+                <div class="project-stack">
+                    <span class="stack-pill">Ollama</span>
+                    <span class="stack-pill">Hermes Agent CLI</span>
+                    <span class="stack-pill">Local LLMs</span>
+                </div>
+            </article>
 
+            <article class="project-card">
+                <div class="project-num">03</div>
+                <div class="project-tag">AI</div>
+                <h3 class="project-name">Axion AI</h3>
+                <p class="project-desc">An AI game coach and stats provider for Valorant.</p>
+                <div class="project-stack">
+                    <span class="stack-pill">AI</span>
+                    <span class="stack-pill">Valorant</span>
+                </div>
+            </article>
 
-    </style>
+            <article class="project-card">
+                <div class="project-num">04</div>
+                <div class="project-tag">Game</div>
+                <h3 class="project-name">Climate Control</h3>
+                <p class="project-desc">A 2D arcade game where the player picks up objects related to CO₂. It has top-down movement, level progression, scoring, and a statistics system.</p>
+                <div class="project-stack">
+                    <span class="stack-pill">Python</span>
+                    <span class="stack-pill">Pygame</span>
+                </div>
+            </article>
+
+            <article class="project-card">
+                <div class="project-num">05</div>
+                <div class="project-tag">Game</div>
+                <h3 class="project-name">Mastermind</h3>
+                <p class="project-desc">A Mastermind game where each player guesses a 4-color code in 8 attempts. It marks correct and incorrect placements, tracks wins and losses, and has a full user interface.</p>
+                <div class="project-stack">
+                    <span class="stack-pill">Python</span>
+                    <span class="stack-pill">Pygame</span>
+                </div>
+            </article>
+
+        </div>
+    </section>
+
+    <!-- Skills -->
+    <section id="skills">
+        <div class="section-label">
+            <div class="section-stripe"></div>
+            <div>
+                <div class="section-num">03</div>
+                <h2 class="section-title">Skills</h2>
+            </div>
+        </div>
+        <div class="skills-grid">
+            <div class="skills-group">
+                <h3 class="skills-group-title">Programming</h3>
+                <ul class="skill-list">
+                    <li>Python</li>
+                    <li>Pygame</li>
+                    <li>HTML and CSS</li>
+                    <li>GitHub</li>
+                </ul>
+            </div>
+            <div class="skills-group">
+                <h3 class="skills-group-title">AI and Hardware</h3>
+                <ul class="skill-list">
+                    <li>Local LLMs with Ollama</li>
+                    <li>Hermes Agent CLI</li>
+                    <li>Claude Code</li>
+                    <li>Building PCs</li>
+                </ul>
+            </div>
+            <div class="skills-group">
+                <h3 class="skills-group-title">Business</h3>
+                <ul class="skill-list">
+                    <li>Finance and accounting</li>
+                    <li>Fundraising</li>
+                    <li>Case competitions</li>
+                    <li>Marketing</li>
+                </ul>
+            </div>
+            <div class="skills-group">
+                <h3 class="skills-group-title">People</h3>
+                <ul class="skill-list">
+                    <li>Teamwork and leadership</li>
+                    <li>Public speaking</li>
+                    <li>Time management</li>
+                    <li>English and Hindi</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- Experience -->
+    <section id="experience">
+        <div class="section-label">
+            <div class="section-stripe"></div>
+            <div>
+                <div class="section-num">04</div>
+                <h2 class="section-title">Experience</h2>
+            </div>
+        </div>
+        <div class="experience-list">
+
+            <div class="exp-item">
+                <div class="exp-date">April 2026 – Present</div>
+                <div>
+                    <div class="exp-category">Leadership</div>
+                    <h3 class="exp-title">Senior Vice President</h3>
+                    <div class="exp-org">Engineering Club, White Oaks Secondary School</div>
+                    <p class="exp-desc">I work with the club executives to organize engineering projects and events, contribute ideas during project design and decision-making, and help coordinate team projects.</p>
+                </div>
+            </div>
+
+            <div class="exp-item">
+                <div class="exp-date">October 2026 – Present</div>
+                <div>
+                    <div class="exp-category">Club</div>
+                    <h3 class="exp-title">Business Team Member</h3>
+                    <div class="exp-org">WOSS Robotics</div>
+                    <p class="exp-desc">I work on the robotics team’s business side, building teamwork and problem-solving skills.</p>
+                </div>
+            </div>
+
+            <div class="exp-item">
+                <div class="exp-date">2026</div>
+                <div>
+                    <div class="exp-category">Hackathon</div>
+                    <h3 class="exp-title">Participant</h3>
+                    <div class="exp-org">ONHacks 2026</div>
+                    <p class="exp-desc">I built Wayfound, an interactive 3D map of the University of Toronto that plans step-free routes for new students and visitors.</p>
+                </div>
+            </div>
+
+            <div class="exp-item">
+                <div class="exp-date">September 2024 – Present</div>
+                <div>
+                    <div class="exp-category">Competition</div>
+                    <h3 class="exp-title">Member</h3>
+                    <div class="exp-org">DECA</div>
+                    <p class="exp-desc">I compete in case studies for the finance and marketing division and have attended the regional and provincial competitions, which built my leadership, public speaking and business skills.</p>
+                </div>
+            </div>
+
+            <div class="exp-item">
+                <div class="exp-date">June 2025 – February 2026</div>
+                <div>
+                    <div class="exp-category">Leadership</div>
+                    <h3 class="exp-title">Financial Executive</h3>
+                    <div class="exp-org">National Honours Society</div>
+                    <p class="exp-desc">I managed the club’s finances, controlled expenditures, and kept accounting records. I also supervised fundraising and tracked the distribution of money against profit.</p>
+                </div>
+            </div>
+
+            <div class="exp-item">
+                <div class="exp-date">June 2024 – Present</div>
+                <div>
+                    <div class="exp-category">Volunteering</div>
+                    <h3 class="exp-title">110+ Volunteer Hours</h3>
+                    <div class="exp-org">Community events and tutoring</div>
+                    <p class="exp-desc">Burlington VegFest (event operations), Art in My Garden (outreach), Terry Fox Run (route marshal), Kerr Kids Fest (child supervision), HMC Food Packing, Oakville Public Library (event setup and book sales), Snapology (LEGO activities), and online Python tutoring for beginners.</p>
+                </div>
+            </div>
+
+            <div class="exp-item">
+                <div class="exp-date">June 2026</div>
+                <div>
+                    <div class="exp-category">Certifications</div>
+                    <h3 class="exp-title">Responsible AI and Claude</h3>
+                    <div class="exp-org">Introduction to Responsible AI, Claude Code 101, Claude 101</div>
+                </div>
+            </div>
+
+            <div class="exp-item">
+                <div class="exp-date">September 2024 – June 2028</div>
+                <div>
+                    <div class="exp-category">Education</div>
+                    <h3 class="exp-title">Ontario Secondary School Diploma</h3>
+                    <div class="exp-org">White Oaks Secondary School, Oakville, Ontario</div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Contact -->
+    <section id="contact">
+        <div class="section-label">
+            <div class="section-stripe"></div>
+            <div>
+                <div class="section-num">05</div>
+                <h2 class="section-title">Contact</h2>
+            </div>
+        </div>
+        <div class="contact-grid">
+            <div>
+                <p class="contact-intro">I’m looking for hackathons, projects and teams to build with. The best way to reach me is email.</p>
+                <a class="contact-email" href="mailto:1dhamijaaar@hdsb.ca">1dhamijaaar@hdsb.ca</a>
+            </div>
+            <div>
+                <a class="contact-link" href="mailto:1dhamijaaar@hdsb.ca"><span>Email</span><span class="contact-arrow" aria-hidden="true">→</span></a>
+                <a class="contact-link" href="https://github.com/aa123480" target="_blank" rel="noopener"><span>GitHub</span><span class="contact-arrow" aria-hidden="true">→</span></a>
+                <a class="contact-link" href="https://aaru1801.github.io/wayfound" target="_blank" rel="noopener"><span>Wayfound live demo</span><span class="contact-arrow" aria-hidden="true">→</span></a>
+            </div>
+        </div>
+    </section>
+
+    </main>
+
+    <footer>
+        <div class="footer-name">AARAV DHAMIJA</div>
+        <div class="footer-text">Oakville, Ontario · © 2026</div>
+    </footer>
+
+</body>
 </html>
